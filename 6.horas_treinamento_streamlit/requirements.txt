@@ -1,3 +1,4 @@
 ﻿pandas
 playwright
 streamlit
+openpyxl
