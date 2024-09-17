@@ -3,7 +3,7 @@ import asyncio
 from playwright.async_api import async_playwright
 import streamlit as st
 from time import sleep
-import win32com.client as win32
+# import win32com.client as win32
 import sys
 
 if sys.platform == 'win32':
