@@ -9,6 +9,9 @@ import sys
 if sys.platform == 'win32':
     asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 
+os.system('playwright install')
+os.system('playwright install-deps')
+
 # # Função para enviar o relatório por email após a execução
 # def enviar_relatorio():
 #     outlook = win32.Dispatch('outlook.application')
