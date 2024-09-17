@@ -1,4 +1,3 @@
 ﻿pandas
 playwright
 streamlit
-pywin32
