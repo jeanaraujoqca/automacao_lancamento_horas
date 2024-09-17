@@ -9,31 +9,31 @@ import sys
 if sys.platform == 'win32':
     asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 
-# Função para enviar o relatório por email após a execução
-def enviar_relatorio():
-    outlook = win32.Dispatch('outlook.application')
-    namespace = outlook.GetNamespace('MAPI')
+# # Função para enviar o relatório por email após a execução
+# def enviar_relatorio():
+#     outlook = win32.Dispatch('outlook.application')
+#     namespace = outlook.GetNamespace('MAPI')
 
-    def achar_pasta_por_nome(nome_pasta, parent_folder=None):
-        if parent_folder is None:
-            parent_folder = namespace.Folders
+#     def achar_pasta_por_nome(nome_pasta, parent_folder=None):
+#         if parent_folder is None:
+#             parent_folder = namespace.Folders
             
-        for folder in parent_folder:
-            if folder.Name == nome_pasta:
-                return folder
-            sub_folder = achar_pasta_por_nome(nome_pasta, folder.Folders)
-            if sub_folder:
-                return sub_folder
-        return None 
+#         for folder in parent_folder:
+#             if folder.Name == nome_pasta:
+#                 return folder
+#             sub_folder = achar_pasta_por_nome(nome_pasta, folder.Folders)
+#             if sub_folder:
+#                 return sub_folder
+#         return None 
     
-    sent_items_folder = achar_pasta_por_nome("Itens Enviados")
-    nome_remetente = 'Desconhecido' if not sent_items_folder else sent_items_folder.Items.GetLast().SenderName
+#     sent_items_folder = achar_pasta_por_nome("Itens Enviados")
+#     nome_remetente = 'Desconhecido' if not sent_items_folder else sent_items_folder.Items.GetLast().SenderName
     
-    mail = outlook.CreateItem(0)
-    mail.Subject = 'Relatório de Uso da Automação de Lançamento de Horas'
-    mail.Body = f'{nome_remetente} utilizou a automação de lançamento de horas.'
-    mail.To = 'daniellerodrigues@queirozcavalcanti.adv.br'
-    mail.Send()
+#     mail = outlook.CreateItem(0)
+#     mail.Subject = 'Relatório de Uso da Automação de Lançamento de Horas'
+#     mail.Body = f'{nome_remetente} utilizou a automação de lançamento de horas.'
+#     mail.To = 'daniellerodrigues@queirozcavalcanti.adv.br'
+#     mail.Send()
 
 # Função principal para executar a automação Playwright
 async def submit_form(excel_file, email, senha):
@@ -142,8 +142,8 @@ async def submit_form(excel_file, email, senha):
         df_sucesso.to_excel('casos_sucesso.xlsx', index=False)
         df_fracasso.to_excel('casos_fracasso.xlsx', index=False)
 
-        # Envia o relatório por e-mail
-        enviar_relatorio()
+        # # Envia o relatório por e-mail
+        # enviar_relatorio()
         st.write('O processo finalizou! Verificar no Sharepoint as informações editadas.')
         await browser.close()
 
