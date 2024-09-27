@@ -3,11 +3,19 @@ import pandas as pd
 import asyncio
 from playwright.async_api import async_playwright
 import os
+import streamlit as st
+from time import sleep
+import sys
+
+if sys.platform == 'win32':
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+
+os.system('playwright install')
+os.system('playwright install-deps')
 
 async def submit_form(email, senha, file):
     # Read the uploaded Excel file
-    df = pd.read_excel(file)
-    
+    df = pd.read_excel(file)    
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=False)
         context = await browser.new_context()
