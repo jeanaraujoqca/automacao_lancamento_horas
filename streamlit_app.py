@@ -17,7 +17,7 @@ async def submit_form(email, senha, file):
     # Read the uploaded Excel file
     df = pd.read_excel(file)    
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=False)
+        browser = await p.chromium.launch(headless=True)
         context = await browser.new_context()
         page = await context.new_page()
 
